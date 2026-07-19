@@ -4,6 +4,7 @@ enableGlobalVirtualStore: true
 
 packages:
   - apps/*
+  - configs/*
   - libs/*
   - tools/*
 

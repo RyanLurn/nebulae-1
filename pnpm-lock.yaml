@@ -220,6 +220,8 @@ importers:
         specifier: 2.10.5
         version: 2.10.5
 
+  configs/typescript: {}
+
 packages:
 
   '@oxfmt/binding-android-arm-eabi@0.59.0':
