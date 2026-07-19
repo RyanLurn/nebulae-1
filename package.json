@@ -1,0 +1,11 @@
+{
+  "name": "nebulae-1",
+  "type": "module",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.15.0",
+      "onFail": "download"
+    }
+  }
+}
