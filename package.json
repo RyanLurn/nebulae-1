@@ -4,8 +4,8 @@
   "scripts": {
     "build": "turbo run build",
     "build:configs": "turbo run build --filter=./configs/*",
-    "build:libs": "turbo run build --filter=./libs/*",
-    "build:packages": "turbo run build --filter=./configs/* --filter=./libs/*",
+    "build:libs": "turbo run build --filter=./libs/* --filter=./node-libs/*",
+    "build:packages": "turbo run build --filter=./configs/* --filter=./libs/* --filter=./node-libs/*",
     "fmt": "oxfmt --disable-nested-config",
     "fmt:check": "oxfmt --check --disable-nested-config",
     "lint": "pnpm run build:packages && oxlint --disable-nested-config",
