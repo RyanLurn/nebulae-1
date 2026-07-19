@@ -1,0 +1,14 @@
+{
+  "name": "@repo/tsdown-config",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsdown --config-loader tsx"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}
