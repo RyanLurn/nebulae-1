@@ -2,7 +2,7 @@ import type { AppError } from "@repo/error";
 
 import type { Err, Ok } from "@/types";
 
-export function ok<D>(data: D, metadata: unknown = null): Ok<D> {
+export function ok<D>(data: D, metadata?: Record<string, unknown>): Ok<D> {
   return {
     ok: true,
     data,
@@ -12,7 +12,7 @@ export function ok<D>(data: D, metadata: unknown = null): Ok<D> {
 
 export function err<E extends AppError<string>>(
   error: E,
-  metadata: unknown = null,
+  metadata?: Record<string, unknown>,
 ): Err<E> {
   return {
     ok: false,
