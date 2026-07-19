@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/turbo/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!**/*.test.{ts,tsx}",
+        "!**/*.test-d.ts",
+        "!**/*.md",
+        "!migrations/**",
+        "!.oxlintrc.json",
+        "!.oxlintrc.jsonc",
+        "!oxlint.config.ts",
+        "!.oxfmtrc.json",
+        "!.oxfmtrc.jsonc",
+        "!oxfmt.config.ts",
+        "!eslint.config.js",
+        "!drizzle.config.ts",
+        "!.env.example",
+        "!components.json"
+      ],
+      "outputs": ["dist/**"],
+      "outputLogs": "errors-only"
+    }
+  }
+}

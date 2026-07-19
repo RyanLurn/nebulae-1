@@ -3,11 +3,13 @@
   "type": "module",
   "scripts": {
     "build": "turbo run build",
+    "build:configs": "turbo run build --filter=./configs/*",
     "build:libs": "turbo run build --filter=./libs/*",
+    "build:packages": "turbo run build --filter=./configs/* --filter=./libs/*",
     "fmt": "oxfmt --disable-nested-config",
     "fmt:check": "oxfmt --check --disable-nested-config",
-    "lint": "pnpm run build:libs && oxlint --disable-nested-config",
-    "lint:fix": "pnpm run build:libs && oxlint --fix --disable-nested-config",
+    "lint": "pnpm run build:packages && oxlint --disable-nested-config",
+    "lint:fix": "pnpm run build:packages && oxlint --fix --disable-nested-config",
     "check": "pnpm run lint && pnpm run fmt:check",
     "fix": "pnpm run lint:fix && pnpm run fmt",
     "map": "pnpm --filter \"@repo/map\" start"
