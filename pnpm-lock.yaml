@@ -205,6 +205,9 @@ settings:
 
 catalogs:
   default:
+    '@types/node':
+      specifier: 26.1.1
+      version: 26.1.1
     tsdown:
       specifier: 0.22.9
       version: 0.22.9
@@ -214,6 +217,9 @@ catalogs:
     typescript:
       specifier: 6.0.3
       version: 6.0.3
+    zod:
+      specifier: 4.4.3
+      version: 4.4.3
 
 overrides:
   yuku-parser: 0.6.12
@@ -310,6 +316,40 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.9(tsx@4.23.1)(typescript@6.0.3)
+      tsx:
+        specifier: 'catalog:'
+        version: 4.23.1
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
+  node-libs/path:
+    dependencies:
+      '@repo/error':
+        specifier: workspace:*
+        version: link:../../libs/error
+      '@repo/result':
+        specifier: workspace:*
+        version: link:../../libs/result
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@repo/tsdown-config':
+        specifier: workspace:*
+        version: link:../../configs/tsdown
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 26.1.1
       tsdown:
         specifier: 'catalog:'
         version: 0.22.9(tsx@4.23.1)(typescript@6.0.3)
@@ -910,6 +950,9 @@ packages:
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
 
+  '@types/node@26.1.1':
+    resolution: {integrity: sha512-nxAkRSVkN1Y0JC1W8ky/fTfkGsMmcrRsbx+3XoZE+rMOX71kLYTV7fLXpqud1GpbpP5TuffXFqfX7fH2GgZREw==}
+
   '@yuku-codegen/binding-darwin-arm64@0.6.8':
     resolution: {integrity: sha512-eJ+v8XJyf0uKfDV1iQZyKKwLFvpTaBn8bB7uN6NYVSiduYSs/Cd8kU4b8vQo6tPvfw96N9bohtkxpU3hYZNcug==}
     cpu: [arm64]
@@ -1257,6 +1300,9 @@ packages:
   unconfig-core@7.5.0:
     resolution: {integrity: sha512-Su3FauozOGP44ZmKdHy2oE6LPjk51M/TRRjHv2HNCWiDvfvCoxC2lno6jevMA91MYAdCdwP05QnWdWpSbncX/w==}
 
+  undici-types@8.3.0:
+    resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
+
   yuku-ast@0.1.7:
     resolution: {integrity: sha512-2RiMEWv500TixY5rJy6OZd4fSy9WYZKWh6gGbIJ7y7vAGcuCugWOWwOLGaQcRZrXcPUfqtLtvpaJ3SdXtWlhKA==}
 
@@ -1268,6 +1314,9 @@ packages:
 
   yuku-parser@0.6.12:
     resolution: {integrity: sha512-A1+KVTvdm1pQmrl/cS5JlqFvUclKpM8I5MvAOoQnYSGmmJBVDKN24HNXiZmxE8Ndsl4g3qBliZBAxq8/J4pKxA==}
+
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
 snapshots:
 
@@ -1588,6 +1637,10 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
+  '@types/node@26.1.1':
+    dependencies:
+      undici-types: 8.3.0
+
   '@yuku-codegen/binding-darwin-arm64@0.6.8':
     optional: true
 
@@ -1892,6 +1945,8 @@ snapshots:
       '@quansync/fs': 1.0.0
       quansync: 1.0.0
 
+  undici-types@8.3.0: {}
+
   yuku-ast@0.1.7:
     dependencies:
       '@yuku-toolchain/types': 0.5.43
@@ -1932,3 +1987,5 @@ snapshots:
       '@yuku-parser/binding-linux-x64-musl': 0.6.12
       '@yuku-parser/binding-win32-arm64': 0.6.12
       '@yuku-parser/binding-win32-x64': 0.6.12
+
+  zod@4.4.3: {}
