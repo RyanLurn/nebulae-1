@@ -20,3 +20,9 @@ catalog:
 
 allowBuilds:
   esbuild: true
+
+minimumReleaseAgeExclude:
+  - yuku-parser
+
+overrides:
+  "yuku-parser": 0.6.12
