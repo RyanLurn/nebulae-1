@@ -1,7 +1,5 @@
 import type { ErrorObject } from "serialize-error";
 
-import { serializeError } from "serialize-error";
-
 import type {
   AppError,
   FlatError,
@@ -9,6 +7,8 @@ import type {
   NestedSerializeOptions,
   SerializeErrorOptions,
 } from "@/types";
+
+import { serializeNestedError } from "@/serialize-nested-error";
 
 export abstract class BaseError<Code extends string, Cause = unknown>
   extends Error
@@ -35,10 +35,6 @@ export abstract class BaseError<Code extends string, Cause = unknown>
         code: this.code,
       };
     }
-
-    return serializeError(this, {
-      maxDepth: options.maxDepth ?? 50,
-      useToJSON: options.useToJSON ?? true,
-    });
+    return serializeNestedError(this, options);
   }
 }
