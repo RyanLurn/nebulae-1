@@ -3,7 +3,7 @@ import type { Result } from "@repo/result";
 import { UnexpectedError } from "@repo/error";
 import { err, ok } from "@repo/result";
 
-import { JsonStringifyError } from "@/error/classes/json-stringify";
+import { JsonStringifyError } from "@/lib/error";
 
 export function stringifyValueToJson(
   ...params: Parameters<typeof JSON.stringify>

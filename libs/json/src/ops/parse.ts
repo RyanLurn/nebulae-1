@@ -3,7 +3,7 @@ import type { Result } from "@repo/result";
 import { UnexpectedError } from "@repo/error";
 import { err, ok } from "@repo/result";
 
-import { JsonParseError } from "@/error/classes/json-parse";
+import { JsonParseError } from "@/lib/error";
 
 export function parseJsonString(
   ...params: Parameters<typeof JSON.parse>
