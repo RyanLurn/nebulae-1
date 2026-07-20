@@ -7,9 +7,7 @@ import {
 } from "@/constant";
 
 export function constructDockerClient(
-  url:
-    | string
-    | URL = `${DEFAULT_DOCKER_ENGINE_API_URL}/${DEFAULT_DOCKER_ENGINE_API_VERSION}`,
+  url: string | URL = DEFAULT_DOCKER_ENGINE_API_URL,
   options: Client.Options = {
     socketPath: DEFAULT_DOCKER_ENGINE_API_SOCKET_PATH,
   },
