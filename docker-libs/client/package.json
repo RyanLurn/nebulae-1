@@ -10,8 +10,6 @@
     "build": "tsdown --config-loader tsx"
   },
   "dependencies": {
-    "@repo/error": "workspace:*",
-    "@repo/result": "workspace:*",
     "undici": "catalog:"
   },
   "devDependencies": {

@@ -263,12 +263,6 @@ importers:
 
   docker-libs/client:
     dependencies:
-      '@repo/error':
-        specifier: workspace:*
-        version: link:../../libs/error
-      '@repo/result':
-        specifier: workspace:*
-        version: link:../../libs/result
       undici:
         specifier: 'catalog:'
         version: 8.7.0
