@@ -55,6 +55,7 @@ export const HTTP_REQUEST_METHOD_RECORD = {
   },
 } as const;
 
-export type HttpRequestMethods = typeof HTTP_REQUEST_METHOD_RECORD;
+export type HttpRequestMethodRecord = typeof HTTP_REQUEST_METHOD_RECORD;
 
-export type HttpRequestMethod = keyof HttpRequestMethods;
+export type HttpRequestMethod =
+  HttpRequestMethodRecord[keyof HttpRequestMethodRecord]["method"];
