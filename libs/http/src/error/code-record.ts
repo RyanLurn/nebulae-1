@@ -1,12 +1,12 @@
 import { HTTP_RESPONSE_STATUS_RECORD } from "@/constants/response-status-record";
 
 export const HTTP_ERROR_CODE_RECORD = {
-  BAD_REQUEST_ERROR: {
-    code: "BAD_REQUEST_ERROR",
+  BAD_REQUEST: {
+    code: "HTTP_BAD_REQUEST_ERROR",
     status: HTTP_RESPONSE_STATUS_RECORD.BAD_REQUEST,
   },
   INTERNAL_SERVER_ERROR: {
-    code: "INTERNAL_SERVER_ERROR",
+    code: "HTTP_INTERNAL_SERVER_ERROR",
     status: HTTP_RESPONSE_STATUS_RECORD.INTERNAL_SERVER_ERROR,
   },
 } as const;
