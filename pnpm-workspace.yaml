@@ -6,6 +6,7 @@ packages:
   - apps/*
   - configs/*
   - libs/*
+  - docker-libs/*
   - node-libs/*
   - tools/*
 
