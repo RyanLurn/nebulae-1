@@ -1,6 +1,6 @@
 import { HTTP_RESPONSE_STATUS_RECORD } from "@/constants/response-status-record";
 
-export const HTTP_ERROR_CODE_RECORD = {
+export const HTTP_ERROR_RECORD = {
   BAD_REQUEST: {
     code: "HTTP_BAD_REQUEST_ERROR",
     statusCode: HTTP_RESPONSE_STATUS_RECORD.BAD_REQUEST.code,
@@ -13,7 +13,7 @@ export const HTTP_ERROR_CODE_RECORD = {
   },
 } as const;
 
-export type HttpErrorCodeRecord = typeof HTTP_ERROR_CODE_RECORD;
+export type HttpErrorCodeRecord = typeof HTTP_ERROR_RECORD;
 
 export type HttpErrorCode =
   HttpErrorCodeRecord[keyof HttpErrorCodeRecord]["code"];
