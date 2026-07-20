@@ -382,6 +382,31 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
 
+  libs/http:
+    dependencies:
+      '@repo/error':
+        specifier: workspace:*
+        version: link:../error
+      '@repo/result':
+        specifier: workspace:*
+        version: link:../result
+    devDependencies:
+      '@repo/tsdown-config':
+        specifier: workspace:*
+        version: link:../../configs/tsdown
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.9(tsx@4.23.1)(typescript@6.0.3)
+      tsx:
+        specifier: 'catalog:'
+        version: 4.23.1
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
   libs/json:
     dependencies:
       '@repo/error':
