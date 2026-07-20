@@ -18,6 +18,7 @@ catalog:
   tsdown: 0.22.9
   tsx: 4.23.1
   typescript: 6.0.3
+  undici: 8.7.0
   zod: 4.4.3
 
 allowBuilds:
