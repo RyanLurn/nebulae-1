@@ -2,7 +2,7 @@ import { expect, onTestFinished, test } from "vitest";
 
 import { constructDockerClient } from "@/index";
 
-test("constructDockerClient creates a client that can reach the Docker Engine API via /_ping", async () => {
+test("constructDockerClient should create a client that can reach the Docker Engine API via /_ping", async () => {
   const dockerClient = constructDockerClient();
 
   onTestFinished(async () => {
