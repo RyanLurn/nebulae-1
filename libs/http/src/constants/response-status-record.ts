@@ -41,10 +41,10 @@ export const HTTP_RESPONSE_STATUS_RECORD = {
   },
 } as const;
 
-export type HttpResponseStatuses = typeof HTTP_RESPONSE_STATUS_RECORD;
+export type HttpResponseStatusRecord = typeof HTTP_RESPONSE_STATUS_RECORD;
 
 export type HttpResponseStatusCode =
-  HttpResponseStatuses[keyof HttpResponseStatuses]["code"];
+  HttpResponseStatusRecord[keyof HttpResponseStatusRecord]["code"];
 
 export type HttpResponseStatusText =
-  HttpResponseStatuses[keyof HttpResponseStatuses]["text"];
+  HttpResponseStatusRecord[keyof HttpResponseStatusRecord]["text"];
