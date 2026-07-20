@@ -10,3 +10,12 @@ export type {
   HttpResponseStatusText,
 } from "@/constants/response-status-record";
 export { HTTP_RESPONSE_STATUS_RECORD } from "@/constants/response-status-record";
+
+export type { HttpErrorCodeRecord, HttpErrorCode } from "@/error/record";
+export { HTTP_ERROR_RECORD } from "@/error/record";
+
+export {
+  HttpError,
+  HttpBadRequestError,
+  HttpInternalServerError,
+} from "@/error/classes";
