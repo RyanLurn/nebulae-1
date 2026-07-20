@@ -1,4 +1,4 @@
-export const HTTP_REQUEST_METHODS = {
+export const HTTP_REQUEST_METHOD_RECORD = {
   GET: {
     method: "GET",
     safe: true,
@@ -54,3 +54,7 @@ export const HTTP_REQUEST_METHODS = {
     cacheable: false,
   },
 } as const;
+
+export type HttpRequestMethods = typeof HTTP_REQUEST_METHOD_RECORD;
+
+export type HttpRequestMethod = keyof HttpRequestMethods;

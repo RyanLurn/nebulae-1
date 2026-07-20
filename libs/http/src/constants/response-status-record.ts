@@ -1,4 +1,4 @@
-export const HTTP_RESPONSE_STATUSES = {
+export const HTTP_RESPONSE_STATUS_RECORD = {
   OK: {
     code: 200,
     text: "OK",
@@ -40,3 +40,11 @@ export const HTTP_RESPONSE_STATUSES = {
     text: "Internal Server Error",
   },
 } as const;
+
+export type HttpResponseStatuses = typeof HTTP_RESPONSE_STATUS_RECORD;
+
+export type HttpResponseStatusCode =
+  HttpResponseStatuses[keyof HttpResponseStatuses]["code"];
+
+export type HttpResponseStatusText =
+  HttpResponseStatuses[keyof HttpResponseStatuses]["text"];
