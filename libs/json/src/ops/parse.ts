@@ -15,7 +15,7 @@ export function parseJsonString(
     return ok(jsonValue);
   } catch (error) {
     if (error instanceof SyntaxError) {
-      return err(new JsonParseError({ text: params[0], cause: error }));
+      return err(new JsonParseError({ cause: error }));
     }
     return err(
       new UnexpectedError({

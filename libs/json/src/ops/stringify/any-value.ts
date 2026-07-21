@@ -24,7 +24,7 @@ export function stringifyAnyValueToJson({
     return ok(jsonString);
   } catch (error) {
     if (error instanceof TypeError) {
-      return err(new JsonStringifyError({ value, cause: error }));
+      return err(new JsonStringifyError({ cause: error }));
     }
     return err(
       new UnexpectedError({
@@ -49,7 +49,7 @@ export function stringifyAnyValueToJsonWithReplacerFunction({
     return ok(jsonString);
   } catch (error) {
     if (error instanceof TypeError) {
-      return err(new JsonStringifyError({ value, cause: error }));
+      return err(new JsonStringifyError({ cause: error }));
     }
     return err(
       new UnexpectedError({
@@ -74,7 +74,7 @@ export function stringifyAnyValueToJsonWithReplacerArray({
     return ok(jsonString);
   } catch (error) {
     if (error instanceof TypeError) {
-      return err(new JsonStringifyError({ value, cause: error }));
+      return err(new JsonStringifyError({ cause: error }));
     }
     return err(
       new UnexpectedError({
