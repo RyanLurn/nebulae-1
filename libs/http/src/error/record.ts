@@ -13,7 +13,6 @@ export const HTTP_ERROR_RECORD = {
   },
 } as const;
 
-export type HttpErrorCodeRecord = typeof HTTP_ERROR_RECORD;
+export type HttpErrorRecord = typeof HTTP_ERROR_RECORD;
 
-export type HttpErrorCode =
-  HttpErrorCodeRecord[keyof HttpErrorCodeRecord]["code"];
+export type HttpErrorCode = HttpErrorRecord[keyof HttpErrorRecord]["code"];

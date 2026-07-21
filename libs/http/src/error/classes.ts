@@ -2,18 +2,18 @@ import type { JsonValue } from "@repo/json";
 
 import { BaseError } from "@repo/error";
 
-import type { HttpErrorCodeRecord } from "@/error/record";
+import type { HttpErrorRecord } from "@/error/record";
 
 import { HTTP_ERROR_RECORD } from "@/error/record";
 
 export abstract class HttpError<
-  Key extends keyof HttpErrorCodeRecord,
-> extends BaseError<HttpErrorCodeRecord[Key]["code"], JsonValue> {
+  Key extends keyof HttpErrorRecord,
+> extends BaseError<HttpErrorRecord[Key]["code"], JsonValue> {
   // oxlint-disable-next-line unicorn/custom-error-definition
   abstract override readonly name: string;
-  abstract override readonly code: HttpErrorCodeRecord[Key]["code"];
-  abstract readonly statusCode: HttpErrorCodeRecord[Key]["statusCode"];
-  abstract readonly statusText: HttpErrorCodeRecord[Key]["statusText"];
+  abstract override readonly code: HttpErrorRecord[Key]["code"];
+  abstract readonly statusCode: HttpErrorRecord[Key]["statusCode"];
+  abstract readonly statusText: HttpErrorRecord[Key]["statusText"];
 
   constructor({
     message,
