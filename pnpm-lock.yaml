@@ -294,6 +294,9 @@ importers:
       '@repo/error':
         specifier: workspace:*
         version: link:../../libs/error
+      '@repo/http':
+        specifier: workspace:*
+        version: link:../../libs/http
       undici:
         specifier: 'catalog:'
         version: 8.7.0
