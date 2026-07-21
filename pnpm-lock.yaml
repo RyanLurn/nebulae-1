@@ -393,6 +393,9 @@ importers:
       '@repo/result':
         specifier: workspace:*
         version: link:../result
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../types
     devDependencies:
       '@repo/tsdown-config':
         specifier: workspace:*

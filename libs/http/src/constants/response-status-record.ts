@@ -1,3 +1,5 @@
+import type { ValueOf } from "@repo/types";
+
 export const HTTP_SUCCESSFUL_RESPONSE_STATUS_RECORD = {
   OK: {
     code: 200,
@@ -15,9 +17,9 @@ export const HTTP_SUCCESSFUL_RESPONSE_STATUS_RECORD = {
 export type HttpSuccessfulResponseStatusRecord =
   typeof HTTP_SUCCESSFUL_RESPONSE_STATUS_RECORD;
 export type HttpSuccessfulResponseStatusCode =
-  HttpSuccessfulResponseStatusRecord[keyof HttpSuccessfulResponseStatusRecord]["code"];
+  ValueOf<HttpSuccessfulResponseStatusRecord>["code"];
 export type HttpSuccessfulResponseStatusText =
-  HttpSuccessfulResponseStatusRecord[keyof HttpSuccessfulResponseStatusRecord]["text"];
+  ValueOf<HttpSuccessfulResponseStatusRecord>["text"];
 
 export const HTTP_CLIENT_ERROR_RESPONSE_STATUS_RECORD = {
   BAD_REQUEST: {
@@ -48,9 +50,9 @@ export const HTTP_CLIENT_ERROR_RESPONSE_STATUS_RECORD = {
 export type HttpClientErrorResponseStatusRecord =
   typeof HTTP_CLIENT_ERROR_RESPONSE_STATUS_RECORD;
 export type HttpClientErrorResponseStatusCode =
-  HttpClientErrorResponseStatusRecord[keyof HttpClientErrorResponseStatusRecord]["code"];
+  ValueOf<HttpClientErrorResponseStatusRecord>["code"];
 export type HttpClientErrorResponseStatusText =
-  HttpClientErrorResponseStatusRecord[keyof HttpClientErrorResponseStatusRecord]["text"];
+  ValueOf<HttpClientErrorResponseStatusRecord>["text"];
 
 export const HTTP_SERVER_ERROR_RESPONSE_STATUS_RECORD = {
   INTERNAL_SERVER_ERROR: {
@@ -65,9 +67,9 @@ export const HTTP_SERVER_ERROR_RESPONSE_STATUS_RECORD = {
 export type HttpServerErrorResponseStatusRecord =
   typeof HTTP_SERVER_ERROR_RESPONSE_STATUS_RECORD;
 export type HttpServerErrorResponseStatusCode =
-  HttpServerErrorResponseStatusRecord[keyof HttpServerErrorResponseStatusRecord]["code"];
+  ValueOf<HttpServerErrorResponseStatusRecord>["code"];
 export type HttpServerErrorResponseStatusText =
-  HttpServerErrorResponseStatusRecord[keyof HttpServerErrorResponseStatusRecord]["text"];
+  ValueOf<HttpServerErrorResponseStatusRecord>["text"];
 
 export const HTTP_ERROR_RESPONSE_STATUS_RECORD = {
   ...HTTP_CLIENT_ERROR_RESPONSE_STATUS_RECORD,
@@ -76,16 +78,14 @@ export const HTTP_ERROR_RESPONSE_STATUS_RECORD = {
 export type HttpErrorResponseStatusRecord =
   typeof HTTP_ERROR_RESPONSE_STATUS_RECORD;
 export type HttpErrorResponseStatusCode =
-  HttpErrorResponseStatusRecord[keyof HttpErrorResponseStatusRecord]["code"];
+  ValueOf<HttpErrorResponseStatusRecord>["code"];
 export type HttpErrorResponseStatusText =
-  HttpErrorResponseStatusRecord[keyof HttpErrorResponseStatusRecord]["text"];
+  ValueOf<HttpErrorResponseStatusRecord>["text"];
 
 export const HTTP_RESPONSE_STATUS_RECORD = {
   ...HTTP_SUCCESSFUL_RESPONSE_STATUS_RECORD,
   ...HTTP_ERROR_RESPONSE_STATUS_RECORD,
 } as const;
 export type HttpResponseStatusRecord = typeof HTTP_RESPONSE_STATUS_RECORD;
-export type HttpResponseStatusCode =
-  HttpResponseStatusRecord[keyof HttpResponseStatusRecord]["code"];
-export type HttpResponseStatusText =
-  HttpResponseStatusRecord[keyof HttpResponseStatusRecord]["text"];
+export type HttpResponseStatusCode = ValueOf<HttpResponseStatusRecord>["code"];
+export type HttpResponseStatusText = ValueOf<HttpResponseStatusRecord>["text"];

@@ -12,7 +12,8 @@
   "dependencies": {
     "@repo/error": "workspace:*",
     "@repo/json": "workspace:*",
-    "@repo/result": "workspace:*"
+    "@repo/result": "workspace:*",
+    "@repo/types": "workspace:*"
   },
   "devDependencies": {
     "@repo/tsdown-config": "workspace:*",
