@@ -1,0 +1,1 @@
+export const JSON_STRING_DEFAULT_SPACE = 2;
