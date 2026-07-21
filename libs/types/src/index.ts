@@ -1,3 +1,2 @@
-export type { Branded } from "@/branded";
-
-export type { OmitKnownKeys } from "@/utils";
+export type * from "@/branded";
+export type * from "@/utils";
