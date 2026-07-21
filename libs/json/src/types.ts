@@ -4,7 +4,24 @@ export type JsonArray = JsonValue[] | readonly JsonValue[];
 export type JsonValue = JsonPrimitive | JsonObject | JsonArray;
 
 export type JsonifiableObject =
-  | { [K in string]?: Jsonifiable }
-  | { toJSON: () => Jsonifiable };
-export type JsonifiableArray = readonly Jsonifiable[];
-export type Jsonifiable = JsonPrimitive | JsonifiableObject | JsonifiableArray;
+  | { [K in string]?: JsonifiableValue }
+  | { toJSON: () => JsonifiableValue };
+export type JsonifiableArray = readonly JsonifiableValue[];
+export type JsonifiableValue =
+  | JsonPrimitive
+  | JsonifiableObject
+  | JsonifiableArray;
+
+export type JsonStringifyReplacerFunction = (
+  this: any,
+  key: string,
+  value: any,
+) => any;
+export type JsonStringifyReplacerArray = (number | string)[];
+export type JsonStringifySpace = string | number;
+
+export type StringifyJsonifiableValueReplacerFunction = (
+  this: JsonifiableValue,
+  key: string,
+  value: JsonifiableValue,
+) => JsonifiableValue;
