@@ -24,7 +24,8 @@ export class JsonStringifyError extends BaseError<
 
   constructor({ value, cause }: { value: unknown; cause: TypeError }) {
     super({
-      message: `Failed to stringify value because ${typeof value === "bigint" ? "it's a BigInt" : "contains a circular reference"}.`,
+      message:
+        "Failed to stringify value because it contains a circular reference or a BigInt value is encountered.",
       cause,
     });
     this.value = value;
