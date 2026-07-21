@@ -384,6 +384,9 @@ importers:
       '@repo/error':
         specifier: workspace:*
         version: link:../error
+      '@repo/json':
+        specifier: workspace:*
+        version: link:../json
       '@repo/result':
         specifier: workspace:*
         version: link:../result

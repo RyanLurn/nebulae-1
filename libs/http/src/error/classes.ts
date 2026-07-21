@@ -1,35 +1,28 @@
+import type { JsonValue } from "@repo/json";
+
 import { BaseError } from "@repo/error";
 
-import type { HttpRequestMethod } from "@/constants/request-method-record";
 import type { HttpErrorCodeRecord } from "@/error/record";
 
 import { HTTP_ERROR_RECORD } from "@/error/record";
 
 export abstract class HttpError<
   Key extends keyof HttpErrorCodeRecord,
-> extends BaseError<HttpErrorCodeRecord[Key]["code"]> {
+> extends BaseError<HttpErrorCodeRecord[Key]["code"], JsonValue> {
   // oxlint-disable-next-line unicorn/custom-error-definition
   abstract override readonly name: string;
   abstract override readonly code: HttpErrorCodeRecord[Key]["code"];
   abstract readonly statusCode: HttpErrorCodeRecord[Key]["statusCode"];
   abstract readonly statusText: HttpErrorCodeRecord[Key]["statusText"];
-  readonly url: string;
-  readonly method: HttpRequestMethod;
 
   constructor({
     message,
-    url,
-    method,
-    cause,
+    parsedResponseBody,
   }: {
     message: string;
-    url: string;
-    method: HttpRequestMethod;
-    cause: unknown;
+    parsedResponseBody: JsonValue;
   }) {
-    super({ message, cause });
-    this.url = url;
-    this.method = method;
+    super({ message, cause: parsedResponseBody });
   }
 }
 
