@@ -53,7 +53,7 @@ export const VolumeBindingSchema = z.templateLiteral([
           ctx.addIssue({
             code: "invalid_format",
             format: "volume-binding-options",
-            message: "options must be a comma-delimited list",
+            message: "options cannot be empty",
           });
           return;
         }
