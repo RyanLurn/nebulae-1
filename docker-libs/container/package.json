@@ -1,0 +1,29 @@
+{
+  "name": "@repo/docker-container",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown --config-loader tsx",
+    "test": "vitest --watch=false"
+  },
+  "dependencies": {
+    "@repo/docker-client": "workspace:*",
+    "@repo/docker-error": "workspace:*",
+    "@repo/error": "workspace:*",
+    "@repo/result": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/tsdown-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

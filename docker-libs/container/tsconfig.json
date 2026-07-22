@@ -1,0 +1,9 @@
+{
+  "extends": "@repo/typescript-config/node-with-vitest.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "tsdown.config.ts", "vitest.config.ts"]
+}
