@@ -15,6 +15,7 @@
     "@repo/docker-error": "workspace:*",
     "@repo/error": "workspace:*",
     "@repo/result": "workspace:*",
+    "@repo/types": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
