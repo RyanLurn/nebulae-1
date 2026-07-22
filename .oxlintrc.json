@@ -21,5 +21,14 @@
     "typescript/consistent-type-imports": "error",
     "typescript/no-import-type-side-effects": "error",
     "unicorn/custom-error-definition": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/test/**", "**/*.test.ts"],
+      "plugins": ["vitest"],
+      "rules": {
+        "vitest/consistent-test-it": ["error", { "withinDescribe": "test" }]
+      }
+    }
+  ]
 }
