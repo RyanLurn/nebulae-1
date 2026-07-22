@@ -32,3 +32,18 @@ export const ListImagesEndpointQueryParamsSchema = z
 export type ListImagesEndpointQueryParams = z.infer<
   typeof ListImagesEndpointQueryParamsSchema
 >;
+
+export const ListImagesEndpointResponseBodySchema = z.object({
+  Id: z.string().min(1),
+  ParentId: z.string(),
+  RepoTags: z.array(z.string()),
+  RepoDigests: z.array(z.string()),
+  Created: z.int().positive(),
+  Size: z.int().positive(),
+  SharedSize: z.union([z.int().nonnegative(), z.literal(-1)]),
+  Labels: z.record(z.string(), z.string()),
+  Containers: z.union([z.int().nonnegative(), z.literal(-1)]),
+});
+export type ListImagesEndpointResponseBody = z.infer<
+  typeof ListImagesEndpointResponseBodySchema
+>;
