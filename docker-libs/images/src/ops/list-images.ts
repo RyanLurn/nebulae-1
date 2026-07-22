@@ -17,8 +17,18 @@ export const ListImagesEndpointQueryParamsSchema = z
   .object({
     all: z.boolean().default(false),
     filters: ListImagesEndpointFiltersQueryParamSchema,
+    "shared-size": z.boolean().default(false),
+    digests: z.boolean().default(false),
+    manifests: z.boolean().default(false),
+    identity: z.boolean().default(false),
   })
-  .partial();
+  .partial()
+  .refine((value) => {
+    if (value.identity === true && value.manifests !== true) {
+      return false;
+    }
+    return true;
+  });
 export type ListImagesEndpointQueryParams = z.infer<
   typeof ListImagesEndpointQueryParamsSchema
 >;
