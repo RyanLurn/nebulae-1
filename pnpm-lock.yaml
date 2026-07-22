@@ -328,6 +328,9 @@ importers:
       '@repo/error':
         specifier: workspace:*
         version: link:../../libs/error
+      '@repo/node-path':
+        specifier: workspace:*
+        version: link:../../node-libs/path
       '@repo/result':
         specifier: workspace:*
         version: link:../../libs/result
