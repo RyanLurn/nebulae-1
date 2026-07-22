@@ -33,6 +33,11 @@ export type ListImagesEndpointQueryParams = z.infer<
   typeof ListImagesEndpointQueryParamsSchema
 >;
 
+export const ImageManifestSummarySchema = z.object({
+  ID: z.string().min(1),
+});
+export type ImageManifestSummary = z.infer<typeof ImageManifestSummarySchema>;
+
 export const ListImagesEndpointResponseBodySchema = z.object({
   Id: z.string().min(1),
   ParentId: z.string(),
