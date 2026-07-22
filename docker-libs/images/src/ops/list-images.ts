@@ -33,6 +33,15 @@ export type ListImagesEndpointQueryParams = z.infer<
   typeof ListImagesEndpointQueryParamsSchema
 >;
 
+export const OCIPlatformSchema = z.object({
+  architecture: z.string().min(1),
+  os: z.string().min(1),
+  "os.version": z.string().min(1).optional(),
+  "os.features": z.array(z.string().min(1)).optional(),
+  variant: z.string().min(1).optional(),
+});
+export type OCIPlatform = z.infer<typeof OCIPlatformSchema>;
+
 export const OCIDescriptorSchema = z.object({
   mediaType: z.string().min(1),
   digest: z.string().min(1),
