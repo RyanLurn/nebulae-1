@@ -1,3 +1,4 @@
+import { AbsolutePathSchema } from "@repo/node-path";
 import { z } from "zod";
 
 export const ThrottleDeviceSchema = z.object({
@@ -38,6 +39,36 @@ export const DeviceRequestSchema = z
   })
   .partial();
 export type DeviceRequest = z.infer<typeof DeviceRequestSchema>;
+
+export const VolumeBindingSchema = z.templateLiteral([
+  AbsolutePathSchema,
+  ":",
+  AbsolutePathSchema,
+  z
+    .templateLiteral([
+      ":",
+      z.string().superRefine((value, ctx) => {
+        const options = value.split(",");
+        if (options.length === 0) {
+          ctx.addIssue({
+            code: "invalid_format",
+            format: "volume-binding-options",
+            message: "options must be a comma-delimited list",
+          });
+          return;
+        }
+        if (options.length > 4) {
+          ctx.addIssue({
+            code: "invalid_format",
+            format: "volume-binding-options",
+            message: "there can only be 4 options at most",
+          });
+        }
+      }),
+    ])
+    .optional(),
+]);
+export type VolumeBinding = z.infer<typeof VolumeBindingSchema>;
 
 export const HostConfigSchema = z
   .object({
