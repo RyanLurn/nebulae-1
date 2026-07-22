@@ -33,6 +33,16 @@ export type ListImagesEndpointQueryParams = z.infer<
   typeof ListImagesEndpointQueryParamsSchema
 >;
 
+export const OCIDescriptorSchema = z.object({
+  mediaType: z.string().min(1),
+  digest: z.string().min(1),
+  size: z.int().positive(),
+  urls: z.union([z.array(z.url()), z.null()]),
+  annotations: z.union([z.record(z.string(), z.string()), z.null()]),
+  data: z.union([z.base64(), z.null()]),
+});
+export type OCIDescriptor = z.infer<typeof OCIDescriptorSchema>;
+
 export const ImageManifestSummarySchema = z.object({
   ID: z.string().min(1),
 });
