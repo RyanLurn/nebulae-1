@@ -9,5 +9,8 @@ export const AbsolutePathSchema = z
   .refine(
     (value) => isAbsolute(value),
     "Expected an absolute path, received a relative one.",
-  )
-  .transform((value) => value as AbsolutePath);
+  );
+
+export const AbsolutePathBrandedSchema = AbsolutePathSchema.transform(
+  (value) => value as AbsolutePath,
+);

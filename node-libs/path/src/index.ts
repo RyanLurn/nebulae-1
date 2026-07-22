@@ -1,5 +1,4 @@
-export type { AbsolutePath } from "@/types";
+export type * from "@/types";
 
-export { resolvePath } from "@/resolve";
-
-export { AbsolutePathSchema } from "@/schemas";
+export * from "@/resolve";
+export * from "@/schemas";
