@@ -249,6 +249,9 @@ importers:
       '@repo/error':
         specifier: workspace:*
         version: link:../../libs/error
+      '@repo/node-env':
+        specifier: workspace:*
+        version: link:../../node-libs/env
       '@repo/result':
         specifier: workspace:*
         version: link:../../libs/result
