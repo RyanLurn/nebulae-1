@@ -56,6 +56,16 @@ export type OCIDescriptor = z.infer<typeof OCIDescriptorSchema>;
 
 export const ImageManifestSummarySchema = z.object({
   ID: z.string().min(1),
+  Descriptor: OCIDescriptorSchema,
+  Available: z.boolean(),
+  Size: z.object({
+    Total: z.int().positive(),
+    Content: z.int().positive(),
+  }),
+  Kind: z.enum(["image", "attestation", "unknown"]),
+  AttestationData: z
+    .union([z.object({ For: z.string().min(1) }), z.null()])
+    .optional(),
 });
 export type ImageManifestSummary = z.infer<typeof ImageManifestSummarySchema>;
 
