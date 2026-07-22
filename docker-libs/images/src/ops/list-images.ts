@@ -49,6 +49,8 @@ export const OCIDescriptorSchema = z.object({
   urls: z.union([z.array(z.url()), z.null()]),
   annotations: z.union([z.record(z.string(), z.string()), z.null()]),
   data: z.union([z.base64(), z.null()]),
+  platform: z.union([OCIPlatformSchema, z.null()]),
+  artifactType: z.union([z.string().min(1), z.null()]),
 });
 export type OCIDescriptor = z.infer<typeof OCIDescriptorSchema>;
 
