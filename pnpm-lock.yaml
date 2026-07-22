@@ -244,6 +244,31 @@ importers:
         specifier: 2.10.5
         version: 2.10.5
 
+  apps/agent-tui:
+    dependencies:
+      '@repo/error':
+        specifier: workspace:*
+        version: link:../../libs/error
+      '@repo/result':
+        specifier: workspace:*
+        version: link:../../libs/result
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 26.1.1
+      tsx:
+        specifier: 'catalog:'
+        version: 4.23.1
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
   configs/tsdown:
     devDependencies:
       '@repo/typescript-config':

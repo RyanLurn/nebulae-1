@@ -1,0 +1,19 @@
+{
+  "name": "@repo/agent-tui",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx --env-file=.env ./src/index.ts"
+  },
+  "dependencies": {
+    "@repo/error": "workspace:*",
+    "@repo/result": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}
