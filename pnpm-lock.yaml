@@ -545,6 +545,12 @@ importers:
       '@repo/error':
         specifier: workspace:*
         version: link:../error
+      '@repo/node-env':
+        specifier: workspace:*
+        version: link:../../node-libs/env
+      '@repo/node-path':
+        specifier: workspace:*
+        version: link:../../node-libs/path
       '@repo/result':
         specifier: workspace:*
         version: link:../result
