@@ -12,7 +12,9 @@
     "test": "vitest --watch=false"
   },
   "dependencies": {
+    "@repo/docker-client": "workspace:*",
     "@repo/error": "workspace:*",
+    "@repo/json": "workspace:*",
     "@repo/node-env": "workspace:*",
     "@repo/node-path": "workspace:*",
     "@repo/result": "workspace:*",

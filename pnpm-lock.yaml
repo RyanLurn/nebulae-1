@@ -542,9 +542,15 @@ importers:
 
   libs/sandbox:
     dependencies:
+      '@repo/docker-client':
+        specifier: workspace:*
+        version: link:../../docker-libs/client
       '@repo/error':
         specifier: workspace:*
         version: link:../error
+      '@repo/json':
+        specifier: workspace:*
+        version: link:../json
       '@repo/node-env':
         specifier: workspace:*
         version: link:../../node-libs/env
