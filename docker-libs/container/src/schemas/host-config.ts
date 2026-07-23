@@ -47,24 +47,10 @@ export const VolumeBindingSchema = z.templateLiteral([
   z
     .templateLiteral([
       ":",
-      z.string().superRefine((value, ctx) => {
-        const options = value.split(",");
-        if (options.length === 0) {
-          ctx.addIssue({
-            code: "invalid_format",
-            format: "volume-binding-options",
-            message: "options cannot be empty",
-          });
-          return;
-        }
-        if (options.length > 4) {
-          ctx.addIssue({
-            code: "invalid_format",
-            format: "volume-binding-options",
-            message: "there can only be 4 options at most",
-          });
-        }
-      }),
+      z.string(),
+      z.templateLiteral([",", z.string()]).optional(),
+      z.templateLiteral([",", z.string()]).optional(),
+      z.templateLiteral([",", z.string()]).optional(),
     ])
     .optional(),
 ]);
@@ -205,7 +191,7 @@ export const HostConfigSchema = z
         "Maximum IO in bytes per second for the container system drive (Windows only).",
       ),
     Binds: z
-      .array(z.string())
+      .array(VolumeBindingSchema)
       .describe("A list of volume bindings for this container."),
   })
   .partial()
