@@ -13,6 +13,7 @@ export interface SandboxDockerContainerHostConfig {
   pidsLimit?: number;
   ulimits?: Docker.Ulimit[];
   tmpfs?: Record<string, string>;
+  workspaceBindMountSourcePath: string;
 }
 
 export async function sandboxDockerContainerCreate({
@@ -28,7 +29,7 @@ export async function sandboxDockerContainerCreate({
   containerImage: string;
   containerEnv?: `${string}=${string}`[];
   containerLabels?: Record<string, string>;
-  containerHostConfig?: SandboxDockerContainerHostConfig;
+  containerHostConfig: SandboxDockerContainerHostConfig;
 }): Promise<Result<Docker.Container, UnexpectedError>> {
   try {
     const sandboxContainer = await dockerClient.createContainer({
@@ -44,28 +45,27 @@ export async function sandboxDockerContainerCreate({
         SecurityOpt: ["no-new-privileges"],
         ReadonlyRootfs: true,
         AutoRemove: true,
-        CapAdd: containerHostConfig?.capAdd,
-        NetworkMode: containerHostConfig?.networkMode ?? "none",
-        Memory: containerHostConfig?.memory ?? 512 * 1024 * 1024,
-        MemorySwap: containerHostConfig?.memorySwap ?? 512 * 1024 * 1024,
-        NanoCpus: containerHostConfig?.nanoCpus ?? 1_000_000_000,
-        PidsLimit: containerHostConfig?.pidsLimit ?? 128,
-        Ulimits: containerHostConfig?.ulimits,
+        CapAdd: containerHostConfig.capAdd,
+        NetworkMode: containerHostConfig.networkMode ?? "none",
+        Memory: containerHostConfig.memory ?? 512 * 1024 * 1024,
+        MemorySwap: containerHostConfig.memorySwap ?? 512 * 1024 * 1024,
+        NanoCpus: containerHostConfig.nanoCpus ?? 1_000_000_000,
+        PidsLimit: containerHostConfig.pidsLimit ?? 128,
+        Ulimits: containerHostConfig.ulimits,
         Mounts: [
           {
             Type: "bind",
-            Source: "/host/path/to/workspace",
+            Source: containerHostConfig.workspaceBindMountSourcePath,
             Target: "/workspace",
             ReadOnly: false,
           },
           {
             Type: "tmpfs",
             Target: "/tmp",
-            Source: "/tmp",
             TmpfsOptions: { SizeBytes: 64 * 1024 * 1024, Mode: 493 },
-          },
+          } as Docker.MountSettings,
         ],
-        Tmpfs: containerHostConfig?.tmpfs,
+        Tmpfs: containerHostConfig.tmpfs,
       },
     });
     return ok(sandboxContainer);
