@@ -26,8 +26,8 @@ export async function sandboxDockerContainerCreate({
   dockerClient: Docker;
   containerName: string;
   containerImage: string;
-  containerEnv: `${string}=${string}`[];
-  containerLabels: Record<string, string>;
+  containerEnv?: `${string}=${string}`[];
+  containerLabels?: Record<string, string>;
   containerHostConfig?: SandboxDockerContainerHostConfig;
 }): Promise<Result<Docker.Container, UnexpectedError>> {
   try {
