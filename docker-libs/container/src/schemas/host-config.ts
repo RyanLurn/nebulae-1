@@ -1,6 +1,8 @@
 import { AbsolutePathSchema } from "@repo/node-path";
 import { z } from "zod";
 
+import { MountSchema } from "@/schemas/mount";
+
 export const ThrottleDeviceSchema = z.object({
   Path: z.string(),
   Rate: z.int64().nonnegative(),
@@ -300,6 +302,84 @@ export const HostConfigSchema = z
       )
       .describe(
         "A list of volumes to inherit from another container, specified in the form `<container name>[:<ro|rw>]`.",
+      ),
+    Mounts: z
+      .array(MountSchema)
+      .describe("Specification for mounts to be added to the container."),
+    ConsoleSize: z
+      .union([
+        z.tuple([z.int().nonnegative(), z.int().nonnegative()]),
+        z.null(),
+      ])
+      .describe("Initial console size, as an [height, width] array."),
+    Annotations: z
+      .record(z.string(), z.string())
+      .describe(
+        "Arbitrary non-identifying metadata attached to container and provided to the runtime when the container is started.",
+      ),
+    CapAdd: z
+      .array(z.string().min(1))
+      .describe(
+        "A list of kernel capabilities to add to the container. Conflicts with option 'Capabilities'.",
+      ),
+    CapDrop: z
+      .array(z.string().min(1))
+      .describe(
+        "A list of kernel capabilities to drop from the container. Conflicts with option 'Capabilities'.",
+      ),
+    CgroupnsMode: z
+      .union([
+        z
+          .literal("private")
+          .describe("the container runs in its own private cgroup namespace"),
+        z.literal("host").describe("use the host system's cgroup namespace"),
+      ])
+      .describe(
+        'cgroup namespace mode for the container. If not specified, the daemon default is used, which can either be `"private"` or `"host"`, depending on daemon version, kernel support and configuration.',
+      ),
+    Dns: z
+      .array(z.union([z.ipv4(), z.ipv6()]))
+      .describe("A list of DNS servers for the container to use."),
+    DnsOptions: z.array(z.string().min(1)).describe("A list of DNS options."),
+    DnsSearch: z
+      .array(z.string().min(1))
+      .describe("A list of DNS search domains."),
+    ExtraHosts: z
+      .array(
+        z.templateLiteral([z.hostname(), ":", z.union([z.ipv4(), z.ipv6()])]),
+      )
+      .describe(
+        'A list of hostnames/IP mappings to add to the container\'s `/etc/hosts` file. Specified in the form `["hostname:IP"]`.',
+      ),
+    GroupAdd: z
+      .array(z.string().min(1))
+      .describe(
+        "A list of additional groups that the container process will run as.",
+      ),
+    IpcMode: z
+      .union([
+        z
+          .literal("none")
+          .describe("own private IPC namespace, with /dev/shm not mounted"),
+        z.literal("private").describe("own private IPC namespace"),
+        z
+          .literal("shareable")
+          .describe(
+            "own private IPC namespace, with a possibility to share it with other containers",
+          ),
+        z
+          .templateLiteral([z.string().min(1), ":", z.string().min(1)])
+          .describe("join another (shareable) container's IPC namespace"),
+        z.literal("host").describe("use the host system's IPC namespace"),
+      ])
+      .describe(
+        'IPC sharing mode for the container. If not specified, daemon default is used, which can either be `"private"` or `"shareable"`, depending on daemon version and configuration.',
+      ),
+    Cgroup: z.string().min(1).describe("Cgroup to use for the container."),
+    Links: z
+      .array(z.templateLiteral([z.string().min(1), ":", z.string().min(1)]))
+      .describe(
+        "A list of links for the container in the form `container_name:alias`.",
       ),
   })
   .partial()
