@@ -8,6 +8,7 @@ packages:
   - libs/*
   - docker-libs/*
   - node-libs/*
+  - openapi-libs/*
   - tools/*
 
 catalogMode: prefer
