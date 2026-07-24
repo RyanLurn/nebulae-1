@@ -56,6 +56,58 @@ export const VolumeBindingSchema = z.templateLiteral([
 ]);
 export type VolumeBinding = z.infer<typeof VolumeBindingSchema>;
 
+export const PortBindingSchema = z.array(
+  z.object({
+    HostIp: z
+      .union([z.ipv4(), z.ipv6()])
+      .describe("Host IP address that the container's port is mapped to."),
+    HostPort: z
+      .string()
+      .min(1)
+      .describe("Host port number that the container's port is mapped to."),
+  }),
+);
+export type PortBinding = z.infer<typeof PortBindingSchema>;
+
+export const PortMapSchema = z
+  .record(
+    z.templateLiteral([z.string(), "/", z.string()]),
+    z.union([PortBindingSchema, z.null()]),
+  )
+  .describe(
+    "PortMap describes the mapping of container ports to host ports, using the container's port-number and protocol as key in the format `<port>/<protocol>`, for example, `80/udp`. If a container's port is mapped for multiple protocols, separate entries are added to the mapping table.",
+  );
+export type PortMap = z.infer<typeof PortMapSchema>;
+
+export const RestartPolicySchema = z
+  .discriminatedUnion("Name", [
+    z.object({
+      Name: z.union([
+        z.literal("").describe("Empty string means not to restart"),
+        z.literal("no").describe("Do not automatically restart"),
+        z.literal("always").describe("Always restart"),
+        z
+          .literal("unless-stopped")
+          .describe(
+            "Restart always except when the user has manually stopped the container",
+          ),
+      ]),
+    }),
+    z.object({
+      Name: z
+        .literal("on-failure")
+        .describe("Restart only when the container exit code is non-zero"),
+      MaximumRetryCount: z
+        .int()
+        .describe("The number of times to retry before giving up."),
+    }),
+  ])
+  .default({ Name: "" })
+  .describe(
+    "The behavior to apply when the container exits. The default is not to restart. An ever increasing delay (double the previous delay, starting at 100ms) is added before each restart to prevent flooding the server.",
+  );
+export type RestartPolicy = z.infer<typeof RestartPolicySchema>;
+
 export const HostConfigSchema = z
   .object({
     CpuShares: z
@@ -193,6 +245,62 @@ export const HostConfigSchema = z
     Binds: z
       .array(VolumeBindingSchema)
       .describe("A list of volume bindings for this container."),
+    ContainerIDFile: z
+      .string()
+      .min(1)
+      .describe("Path to a file where the container ID is written"),
+    LogConfig: z
+      .object({
+        Type: z
+          .enum([
+            "local",
+            "json-file",
+            "syslog",
+            "journald",
+            "gelf",
+            "fluentd",
+            "awslogs",
+            "splunk",
+            "etwlogs",
+            "none",
+          ])
+          .describe(
+            'Name of the logging driver used for the container or "none" if logging is disabled.',
+          ),
+        Config: z
+          .record(z.string(), z.string())
+          .describe(
+            "Driver-specific configuration options for the logging driver.",
+          ),
+      })
+      .describe("The logging configuration for this container"),
+    NetworkMode: z
+      .string()
+      .min(1)
+      .describe(
+        "Network mode to use for this container. Supported standard values are: `bridge`, `host`, `none`, and `container:<name|id>`. Any other value is taken as a custom network's name to which this container should connect to.",
+      ),
+    PortBindings: PortMapSchema,
+    RestartPolicy: RestartPolicySchema,
+    AutoRemove: z
+      .boolean()
+      .describe(
+        "Automatically remove the container when the container's process exits. This has no effect if `RestartPolicy` is set.",
+      ),
+    VolumeDriver: z
+      .string()
+      .min(1)
+      .describe("Driver that this container uses to mount volumes."),
+    VolumesFrom: z
+      .array(
+        z.templateLiteral([
+          z.string(),
+          z.templateLiteral([":", z.enum(["ro", "rw"])]).optional(),
+        ]),
+      )
+      .describe(
+        "A list of volumes to inherit from another container, specified in the form `<container name>[:<ro|rw>]`.",
+      ),
   })
   .partial()
   .describe(
