@@ -8,7 +8,6 @@
   },
   "scripts": {
     "try": "tsx --env-file=.env ./src/try.ts",
-    "build": "tsdown --config-loader tsx",
     "test": "vitest --watch=false"
   },
   "dependencies": {
